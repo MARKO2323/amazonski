@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>amazonski.rs</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-full">
+        <img src="assets/logo.png" alt="Logo sajta">
+      </div>
+      <h1>amazonski.rs</h1>
+    </header>
+
+    <!-- Login forma (opciona) -->
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Lozinka">
+      <button type="submit">Admin prijava</button>
+    </form>
+
+    <!-- Panel vidljiv svima -->
+    <div id="adminPanel">
+      <h2>Dobrodošli!</h2>
+      <div class="korpa-info">
+        <span>🛒 Korpa: <span id="brojStavki">0</span> proizvoda</span>
+        <button onclick="prikaziKorpu()">Prikaži korpu</button>
+        <div class="kontakt">
+          <img src="assets/phone.png" alt="Telefon">
+          <span>060/3806978</span>
+        </div>
+      </div>
+
+      <div class="galerija" id="galerija"></div>
+    </div>
+
+    <div id="korpaModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="zatvoriKorpu()">&times;</span>
+        <h3>Vaša korpa</h3>
+        <ul id="listaKorpe"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
