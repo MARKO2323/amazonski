@@ -1,67 +1,109 @@
 const proizvodi = [
-  { naziv: "Airfryer 10L", slika: "airfry7501.png", cena: "7.500 din" },
-  { naziv: "Airfryer 10L Rerna", slika: "airfry8001.png", cena: "7.500 din" },
-  { naziv: "Navigacija 7\"", slika: "imageradiojack_display.png", cena: "4.500 din" },
-  { naziv: "Power Tower", slika: "imagepowertower.png", cena: "11.999 din" },
-  { naziv: "JBL BT520", slika: "jbl.png", cena: "4.999 din" },
-  { naziv: "Stereo Set 7501", slika: "multimedia7501.png", cena: "6.999 din" }
+  {
+    naziv: "Airfryer HL-7000",
+    slika: "airfryer1.png",
+    cena: "299 zł",
+    opis: "Digitalni airfryer sa touchscreen interfejsom."
+  },
+  {
+    naziv: "Airfryer YL-7000",
+    slika: "airfryer2.png",
+    cena: "7.500 din",
+    opis: ""
+  },
+  {
+    naziv: "PowerTower",
+    slika: "powertower.png",
+    cena: "11.999 din",
+    opis: ""
+  },
+  {
+    naziv: "JBL Tune BT530",
+    slika: "jbl.png",
+    cena: "4.999 din",
+    opis: ""
+  },
+  {
+    naziv: "Navigacija 7\"",
+    slika: "multimedija2.png",
+    cena: "4.500 din",
+    opis: ""
+  },
+  {
+    naziv: "Multimedija Dupli Ulaz",
+    slika: "multimedija1.png",
+    cena: "3.999 din",
+    opis: ""
+  },
+  {
+    naziv: "Multimedija 27cm",
+    slika: "multimedija.png",
+    cena: "6.500 din",
+    opis: ""
+  },
+  {
+    naziv: "Adidas Ranac + Torbica",
+    slika: "ranac.png",
+    cena: "2.999 din",
+    opis: ""
+  },
+  {
+    naziv: "Šorts Lebron James",
+    slika: "lebron6.png",
+    cena: "1.900 din",
+    opis: "Veličine: M, L"
+  },
+  {
+    naziv: "Xbox Kontroler",
+    slika: "xbox.png",
+    cena: "4.500 din",
+    opis: "Microsoft Official Original | Žičani kabl 3m"
+  },
+  {
+    naziv: "Mlin za Kafu",
+    slika: "mlin.png",
+    cena: "4.800 din (AKCIJA)",
+    opis: "Grinder Coffee Profesionalni | Keramički noževi"
+  },
+  {
+    naziv: "Dvostruka Kamera",
+    slika: "dupla_kamera.png",
+    cena: "2.500 din (AKCIJA)",
+    opis: "5x Zoom | Bela boja | Promo cena"
+  }
 ];
 
-let korpa = [];
+let brojKorpe = 0;
+const prikaz = document.getElementById("proizvodi");
 
-function prikaziProizvode() {
-  const galerija = document.getElementById("galerija");
-  galerija.innerHTML = "";
-
-  proizvodi.forEach((p, index) => {
-    const div = document.createElement("div");
-    div.className = "proizvod";
-    div.innerHTML = `
-      <img src="images/${p.slika}" alt="${p.naziv}">
-      <h2>${p.naziv}</h2>
-      <p><strong>Cena:</strong> ${p.cena}</p>
-      <button onclick="dodajUKorpu(${index})">Dodaj u korpu</button>
+function prikaziProizvode(lista) {
+  prikaz.innerHTML = "";
+  lista.forEach(p => {
+    prikaz.innerHTML += `
+      <div class="kartica">
+        <img src="images/${p.slika}" alt="${p.naziv}">
+        <h3>${p.naziv}</h3>
+        <p><strong>Cena:</strong> ${p.cena}</p>
+        <p>${p.opis}</p>
+        <button onclick="dodajUKorpu()">Dodaj u korpu</button>
+      </div>
     `;
-    galerija.appendChild(div);
   });
 }
 
-function dodajUKorpu(index) {
-  korpa.push(proizvodi[index]);
-  document.getElementById("brojStavki").textContent = korpa.length;
+function dodajUKorpu() {
+  brojKorpe++;
+  document.getElementById("brojKorpe").textContent = brojKorpe;
+
+  const klikZvuk = document.getElementById("klikZvuk");
+  klikZvuk.volume = 0.4;
+  klikZvuk.play();
 }
 
-function prikaziKorpu() {
-  const modal = document.getElementById("korpaModal");
-  const lista = document.getElementById("listaKorpe");
-  lista.innerHTML = "";
-
-  korpa.forEach(p => {
-    const li = document.createElement("li");
-    li.textContent = `${p.naziv} – ${p.cena}`;
-    lista.appendChild(li);
-  });
-
-  modal.style.display = "block";
-}
-
-function zatvoriKorpu() {
-  document.getElementById("korpaModal").style.display = "none";
-}
-
-// Automatski prikaz proizvoda za sve korisnike
-window.onload = prikaziProizvode;
-
-// Admin login (opciono)
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  if (email === "kudekamarko23@gmail.com" && password === "jordan23NINA") {
-    alert("Admin pristup aktiviran.");
-    // Ovde možeš dodati admin funkcije
-  } else {
-    alert("Pogrešan email ili lozinka.");
-  }
+document.getElementById("filterInput").addEventListener("input", function() {
+  const vrednost = this.value.toLowerCase();
+  const filtrirani = proizvodi.filter(p => p.naziv.toLowerCase().includes(vrednost));
+  prikaziProizvode(filtrirani);
 });
+
+prikaziProizvode(proizvodi);
