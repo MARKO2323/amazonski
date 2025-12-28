@@ -1,37 +1,98 @@
 body {
+  font-family: 'Noto Color Emoji', Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #111;
-  color: #eee;
+  background-color: #000;
+  color: white;
 }
 
+/* Header */
 .header-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000;
-  padding: 20px;
+  background-color: #000;
+  padding: 10px 20px;
+  flex-wrap: wrap;
 }
 
-.logo-container img {
-  max-width: 300px;
+.logo-container {
+  padding: 10px 0;
 }
 
-.cart-display {
+/* Modernizovan logo */
+.logo-glossy {
+  height: 180px;
+  width: auto;
+  background: linear-gradient(145deg, #ffffff, #f2f2f2);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo-glossy:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(255, 140, 0, 0.6);
+}
+
+/* Viber ikonica sa brojem */
+.viber-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: white;
   font-size: 18px;
-  color: #f90;
   font-weight: bold;
 }
-
-.filter-section {
-  text-align: center;
-  padding: 20px;
+.viber-icon {
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 0 3px rgba(128,0,255,0.6));
+}
+.viber-phone {
+  color: #25D366;
+  text-shadow: 0 0 6px rgba(37, 211, 102, 0.6);
 }
 
+/* Ikonice pored loga */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.social-icon {
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 0 3px rgba(255,140,0,0.5));
+  transition: transform 0.2s ease;
+}
+.social-icon:hover {
+  transform: scale(1.06);
+}
+
+/* Zlatne cene */
+.cena-zlatna {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+/* Ostalo */
+.filter-section {
+  padding: 20px;
+  text-align: center;
+}
 #filterInput {
+  width: 100%;
+  max-width: 400px;
   padding: 10px;
-  width: 300px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
@@ -39,71 +100,93 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 40px;
-}
-
-.kartica {
-  background: #222;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255,140,0,0.3);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
   padding: 20px;
+}
+.kartica {
+  background-color: #111;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 12px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-
 .kartica:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 35px rgba(255,140,0,0.6);
-  border: 1px solid #ff9900;
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+  transform: translateY(-4px);
 }
-
 .kartica img {
   max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 10px;
   border-radius: 8px;
-  margin-bottom: 15px;
 }
-
 .kartica h3 {
-  margin: 10px 0;
-  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
-
-.kartica p {
-  margin: 5px 0;
-  color: #ccc;
-}
-
-button {
-  background: #f90;
-  color: #000;
+.kartica button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #ff6600;
+  color: white;
   border: none;
-  padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+}
+.kartica button:hover {
+  background-color: #ff8000;
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
 }
 
-button:hover {
-  background: #ffc107;
+/* Floating Video Presenter */
+.floating-video {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  z-index: 999;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.6);
 }
-
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #000;
+.floating-video video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
-
-footer p {
-  font-size: 20px;
+.unmute-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
   font-weight: bold;
-  color: #ff9900;
-  padding: 15px;
-  border: 2px solid #ff9900;
-  border-radius: 8px;
-  box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
-  background-color: #111;
-  display: inline-block;
-  margin-top: 20px;
+  z-index: 1000;
 }
+
+/* Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+.popup-content {
+  background-color: #111
